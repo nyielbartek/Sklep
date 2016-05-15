@@ -4,7 +4,14 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php require_once './app/con_db.php'; ?>
+<?php require_once './app/con_db.php'; 
+ session_start();
+ if ((isset($_SESSION['zalogowany']))&&($_SESSION['zalogowany']==true))
+ {
+     header('Location: view/sklep.php');
+     exit();
+ }
+?>
 <html lang="pl">
     <head>
         <title>Najlepszy ze wszystkich sklep</title>
@@ -36,7 +43,11 @@ and open the template in the editor.
                 echo "<h1> działa! </h1>";
                 ?>
             </div>
-            <?php include "view/menu1.php" ?>
+            <?php include "view/menu1.php";
+            if(isset($_SESSION['blad']))
+                echo $_SESSION['blad'];            
+            ?>
+            
         </div>
 
     </body>
