@@ -55,6 +55,10 @@ if ($odpowiedz->success == FALSE) {
     $_OK = FALSE;
     $_SESSION['e_captcha'] = "Nie jesteś człowiekiem?";
 }
+//zapamiętanie danych formuarza
+$_SESSION['fLogin'] = $login;
+$_SESSION['fEmail'] = $email;
+if (isset($_POST['regulamin'])) $_SESSION['fRegulamin'] = TRUE;
 //sprawdzenie powtórzeń w bazie
 try {
     $rezultat = $con->query("SELECT id from users where nick = '$login'");
@@ -85,7 +89,7 @@ try {
     } else
         header('Location: ../view/Rejestracja.php');
 
-   // $con->close();
+    // $con->close();
 } catch (Exception $e) {
     echo '<span style = "color:red";>Błąd serwera!';
     echo '<br /> info dla mnie ' . $e;

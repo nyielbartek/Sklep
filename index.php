@@ -3,14 +3,19 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
+ToDo:
+repozytorium
+kod aktualny
+opis walidacji
+dodawanie produktów - całość na mail z informacją, że wszystko jest 
 -->
-<?php require_once './app/con_db.php'; 
- session_start();
- if ((isset($_SESSION['zalogowany']))&&($_SESSION['zalogowany']==true))
- {
-     header('Location: view/sklep.php');
-     exit();
- }
+<?php
+require_once './app/con_db.php';
+session_start();
+if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] == true)) {
+    header('Location: view/sklep.php');
+    exit();
+}
 ?>
 <html lang="pl">
     <head>
@@ -40,15 +45,35 @@ and open the template in the editor.
                 <?php
                 database::connect();
                 // put your code here
-                echo "<h1> działa! </h1>";
+                echo "<h1> Sklep internetowy </h1>";
                 ?>
             </div>
-            <?php include "view/menu1.php";
-            if(isset($_SESSION['blad']))
-                echo $_SESSION['blad'];            
+            <?php
+            include "view/menu1.php";
+            if (isset($_SESSION['blad']))
+                echo $_SESSION['blad'];
+            if (isset($_SESSION['blad']))
+                unset($_SESSION['blad']);
             ?>
-            
-        </div>
 
+        </div>
+        <!-- Third Container (Grid) -->
+        <div class="container-fluid bg-3 text-center">   
+            <h3 class="margin">Można wybierać, nie można kupić</h3><br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>Wybrać można pół mocnej</p>
+                    <img src="view/mała.jpg" alt="espresso">
+                </div>
+                <div class="col-sm-4"> 
+                    <p>Wybrać można całą słabą</p>
+                    <img src="view/czarna.jpg" alt="Czarna">
+                </div>
+                <div class="col-sm-4"> 
+                    <p>Wybrać można smaczną</p>
+                    <img src="view/biała.jpg" alt="Biała">
+                </div>
+            </div>
+        </div>
     </body>
 </html>
